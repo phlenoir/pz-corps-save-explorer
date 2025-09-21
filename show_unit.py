@@ -2,9 +2,8 @@
 """
 show_unit.py — utilise le Robust Unit Scanner pour afficher UNE ou PLUSIEURS unités par nom ou par offset.
 
-- Repose sur robust_unit_scanner.py (sentinelles 0xFF contiguës, fallback héros).
-- Affiche un aperçu lisible de l'histoire et les caractéristiques dérivées des héros
-  (positions 1-based: 4=attack, 6=defense, 7=initiative, 9=movement, 11=spotting, 13=range).
+- Repose sur robust_unit_scanner.py (sentinelles 0xFF contiguës).
+- Affiche un aperçu lisible de l'histoire et les caractéristiques dérivées des héros.
 - Ajout debug: signale les octets non ASCII sautés avant chaque héros.
 
 Exemples:
@@ -24,16 +23,6 @@ from __future__ import annotations
 import argparse
 from robust_unit_scanner import scan_units, decode_history
 
-# --- preview helpers ---
-def ascii_only(s: str) -> str:
-    return ''.join(ch for ch in s if 32 <= ord(ch) < 127)
-
-def trim_to_first_printable(s: str) -> str:
-    for i, ch in enumerate(s):
-        if ord(ch) >= 32:
-            return s[i:]
-    return s
-
 def main():
     p = argparse.ArgumentParser(description="Show unit(s) (robust scanner)")
     p.add_argument("savefile", help="Path to the save file (*.sav)")
@@ -43,8 +32,8 @@ def main():
     p.add_argument("--count", type=int, default=1, help="Number of units to show starting at index (default=1)")
     # Options d'affichage
     p.add_argument("--hist-snippet", type=int, default=160, help="Chars of history preview (default 160)")
-    p.add_argument("--hist-offset", type=int, default=185,
-               help="Byte offset into history for preview (after sentinel). Use 0 to start at beginning")
+    p.add_argument("--hist-offset", type=int, default=185, 
+               help="Byte offset into history. 185 seems to work all the time")
     # Fenêtres & seuils (relais vers scan_units)
     p.add_argument("--after-name", type=int, default=None, help="Override window after name (bytes)")
     p.add_argument("--history", type=int, default=None, help="Override window for history (bytes)")
@@ -63,6 +52,8 @@ def main():
     scan_kwargs = {}
     if args.after_name is not None:
         scan_kwargs['after_name_window'] = args.after_name
+    if args.hist_offset is not None:
+        scan_kwargs['hist_head_off'] = args.hist_offset        
     if args.history is not None:
         scan_kwargs['history_window'] = args.history
     if args.tail is not None:
@@ -103,6 +94,28 @@ def main():
 
     for u in matches:
         print(f"=== {u.name} ===  @ 0x{u.start_off:x}")
+        print(f"Stats: {u.stats}")
+        # Dérivés par positions 1-based -> indices 0-based
+        def get(idx: int):
+            return u.stats[idx] if idx is not None and idx < len(u.stats) else None
+        xp         = get(9)
+        fuel       = get(17)
+        ammo       = get(19)
+        kills      = get(24)
+        losses     = get(26)
+        erase_inf  = get(28)
+        erase_tank = get(30)
+        erase_reco = get(32)
+        erase_at   = get(34)
+        erase_art  = get(36)
+        erase_aa   = get(38)
+        print(
+            "       derived: "
+            f"xp={xp} fuel={fuel} ammo={ammo} "
+            f"kills={kills} losses={losses} erase_inf={erase_inf} "
+            f"erase_tank={erase_tank} erase_reco={erase_reco} erase_at={erase_at} "
+            f"erase_art={erase_art} erase_aa={erase_aa} "
+        )
         preview = decode_history(u.history,offset=args.hist_offset, snippet=args.hist_snippet)
         print(f"History  : {len(u.history)} bytes | preview: {preview!r}")
 

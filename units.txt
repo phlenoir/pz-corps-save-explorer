@@ -1,0 +1,458 @@
+[offset] using: 0x39ed9 (237273)
+[scan] parsed units: 100
+=== 45th SdKfz  7/2 ===  @ 0x39ed9
+History  : 289 bytes | preview: 'Prohkorovka, July 12, 1943Unit commissioned.'
+Heroes   : none
+Citations: none
+=== 48th SdKfz 7/1 ===  @ 0x3a06d
+History  : 289 bytes | preview: 'Prohkorovka, July 12, 1943Unit commissioned.'
+Heroes   : none
+Citations: none
+=== 49th SdKfz 7/1 ===  @ 0x3a1ff
+History  : 289 bytes | preview: 'Prohkorovka, July 12, 1943Unit commissioned.'
+Heroes   : none
+Citations: none
+=== 9th 43 Wehrmacht Inf ===  @ 0x3a391
+History  : 1591 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Lodz, September 9, 1939#Received new equipment: Opel Blitz. Warsaw South, September 28, 1939"Awarded with Iron Cross '
+Heroes   : 2
+  [1] name=Peter Mueller  image=ground30.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Paul Schmitt  image=ground27.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Danzig Corridor
+  - (2) Kampinsoka Forest
+  - (3) Arras
+  - (4) Buzinovka Depot
+=== 36th 43 Grenadier ===  @ 0x3ab8f
+History  : 967 bytes | preview: 'Voronezh, July 5, 1942Unit commissioned.Novoanninsky, July 25, 1942#Received new equipment: Opel Blitz.&Storming Stalingrad, September 7, 1942"Awarded with Iron'
+Heroes   : 1
+  [1] name=Friedrich Pein  image=Freidrich_Pein.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=3 movement=2 spotting=0 range=0
+Citations:
+  - (1) Novoanninsky
+  - (2) Storming Stalingrad
+  - (3) Yakovlevo
+=== 2nd 43 Grenadier ===  @ 0x3b0a5
+History  : 2229 bytes | preview: 'Lodz, September 9, 1939Unit commissioned.%Kampinsoka Forest, September 20, 1939"Awarded with Iron Cross 2nd Class.The Hague, May 13, 1940"Awarded with Iron Cros'
+Heroes   : 3
+  [1] name=Oleh Dir  image=Oleh Dir.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 16]
+       derived: attack=0 defense=0 initiative=3 movement=3 spotting=0 range=0
+  [2] name=Bernd Zimmermann  image=ground20.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+  [3] name=Stefan Meier  image=ground16.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Lodz
+  - (2) Piatek
+  - (3) The Hague
+  - (4) Sevastopol Assault
+=== 4th 43 Fallschirmjäger ===  @ 0x3bb57
+History  : 1249 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Oslo, April 9, 1940"Awarded with Iron Cross 2nd Class.Maubeuge, May 19, 1940\'Paul Lang distinguished as hero of war.D'
+Heroes   : 1
+  [1] name=Paul Lang  image=ground31.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Lodz
+  - (3) Sedan
+  - (4) Ilovlya
+=== 51st 43 Gebirgsjäger ===  @ 0x3c159
+History  : 517 bytes | preview: 'Orel, March 27, 1943Unit commissioned.Oboyan, July 9, 1943"Awarded with Iron Cross 2nd Class.Oboyan, July 11, 1943#Hoisted victory banner over Oboyan.'
+Heroes   : 1
+  [1] name=Josef Allerberger  image=Allerberger.png
+       stats16: [0, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=2 defense=2 initiative=3 movement=0 spotting=0 range=0
+Citations:
+  - (1) Orel
+=== 51st 43 Gebirgsjäger ===  @ 0x3c45f
+History  : 269 bytes | preview: 'Orel, March 27, 1943Unit commissioned.'
+Heroes   : 1
+  [1] name=Bruno Sutkus  image=Sutkus.png
+       stats16: [0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0]
+       derived: attack=0 defense=2 initiative=2 movement=0 spotting=1 range=0
+Citations:
+  - (1) Orel
+=== 27th 43 Gebirgsjäger ===  @ 0x3c65d
+History  : 1143 bytes | preview: 'Dijon, June 14, 1940Unit commissioned.CreteAirborne, May 22, 1941"Awarded with Iron Cross 2nd Class.Ostrov, July 26, 1941.Christian Krause distinguished as hero'
+Heroes   : 2
+  [1] name=Christian Krause  image=ground40.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Matthias Fuchs  image=ground26.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Dijon
+  - (2) Belgrade
+  - (3) Streets of Moscow
+  - (4) Tatsinskaya
+=== 11th 43 Gebirgsjäger ===  @ 0x3cc8b
+History  : 1551 bytes | preview: 'Modlin, September 23, 1939Unit commissioned.Oslo, April 11, 1940\'Hoisted victory banner over Oscarsborg.Lillehammer, April 16, 1940"Awarded with Iron Cross 2nd '
+Heroes   : 2
+  [1] name=Steffen Schmitz  image=ground39.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 17]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+  [2] name=Kristian Schaefer  image=ground16.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Warsaw South
+  - (2) Oslo
+  - (3) Sedan
+  - (4) Sevastopol Assault
+=== 12th 43 Gebirgsjäger ===  @ 0x3d451
+History  : 1539 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Lodz, September 9, 1939#Received new equipment: Opel Blitz.Lodz, September 12, 1939!Hoisted victory banner over Lodz.'
+Heroes   : 2
+  [1] name=Jurgen Hoffmann  image=ground1.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 14]
+       derived: attack=0 defense=0 initiative=1 movement=0 spotting=0 range=0
+  [2] name=Steffen Koenig  image=ground9.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Kampinsoka Forest
+  - (3) Maubeuge
+  - (4) Sevastopol Assault
+=== 13th 43 Gebirgsjäger ===  @ 0x3dc15
+History  : 1565 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Lodz, September 9, 1939#Received new equipment: Opel Blitz.Modlin, September 26, 1939"Awarded with Iron Cross 2nd Cla'
+Heroes   : 2
+  [1] name=Karsten Maier  image=ground39.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Stefan Werner  image=ground3.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=1 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Modlin
+  - (3) Calais
+  - (4) Sevastopol Assault
+=== 32nd 43 Gebirgsjäger ===  @ 0x3e3d5
+History  : 995 bytes | preview: 'Smolensk41, July 3, 1941Unit commissioned.Novgorod, August 6, 1941"Awarded with Iron Cross 2nd Class. Sevastopol Assault, July 2, 1942"Awarded with Iron Cross 1'
+Heroes   : 2
+  [1] name=Helmut Wirnsberger  image=wirnsberger.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 14]
+       derived: attack=2 defense=0 initiative=3 movement=0 spotting=0 range=0
+  [2] name=Torsten Keller  image=ground27.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+Citations:
+  - (1) Novgorod
+  - (2) Vitebsk
+  - (3) Kharkov43
+=== 32nd Tiger I ===  @ 0x3e951
+History  : 1221 bytes | preview: 'Smolensk41, July 3, 1941Unit commissioned.Ostrov, July 25, 1941#Received new equipment: Panzer IVF.Leningrad41, August 30, 1941"Awarded with Iron Cross 2nd Clas'
+Heroes   : 2
+  [1] name=Heinz Rondorf  image=rondorfheinz.png
+       stats16: [0, 0, 0, 1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 0, 0, 13]
+       derived: attack=1 defense=1 initiative=2 movement=1 spotting=1 range=0
+  [2] name=Dieter Becker  image=ground32.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Ostrov
+  - (2) Streets of Moscow
+  - (3) Tatsinskaya
+=== 17th Tiger I ===  @ 0x3efa9
+History  : 1773 bytes | preview: 'Modlin, September 23, 1939Unit commissioned.Narvik, April 22, 1940"Awarded with Iron Cross 2nd Class.Eben-Emael, May 10, 1940#Received new equipment: Panzer IVD'
+Heroes   : 3
+  [1] name=Albert Kerscher  image=KerscherAlbert.png
+       stats16: [0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 16]
+       derived: attack=2 defense=2 initiative=0 movement=0 spotting=2 range=0
+  [2] name=Matthias Mueller  image=ground29.png
+       stats16: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14]
+       derived: attack=3 defense=0 initiative=0 movement=0 spotting=0 range=0
+  [3] name=Matthias Bauer  image=ground39.png
+       stats16: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=3 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Modlin
+  - (2) Spoils of War
+  - (3) Arras
+  - (4) Simferopol
+=== 46th KV-85(r) ===  @ 0x3f8a3
+History  : 295 bytes | preview: 'Kursk Armory South, July 11, 1943Unit commissioned.'
+Heroes   : none
+Citations: none
+=== 46th KV-85(r) ===  @ 0x3fa41
+History  : 295 bytes | preview: 'Kursk Armory South, July 11, 1943Unit commissioned.'
+Heroes   : none
+Citations: none
+=== 23rd SE Tiger I ===  @ 0x3fbdf
+History  : 1687 bytes | preview: 'Calais, May 21, 1940Unit commissioned.Maginot Line, June 23, 1940"Awarded with Iron Cross 2nd Class.Minsk41, June 22, 1941\'Received new equipment: SE Panzer III'
+Heroes   : 2
+  [1] name=Michael Koch  image=ground20.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13]
+       derived: attack=2 defense=0 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Klaus Koehler  image=ground36.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Dunkirk
+  - (2) Reims
+  - (3) Metaxas Line
+  - (4) Novoanninsky
+=== 40th SE Tiger I ===  @ 0x4040f
+History  : 1441 bytes | preview: 'Metaxas Line, April 12, 1941Unit commissioned.Minsk41, June 22, 1941\'Received new equipment: SE Panzer IIIH.Novgorod, August 4, 1941"Awarded with Iron Cross 2nd'
+Heroes   : 1
+  [1] name=Andreas Schaefer  image=ground19.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+Citations:
+  - (1) Metaxas Line
+  - (2) Ostrov
+  - (3) Kharkov42
+  - (4) Belgorod
+=== 22nd SE Tiger I ===  @ 0x40aef
+History  : 1671 bytes | preview: 'Maubeuge, May 18, 1940Unit commissioned.Reims, June 10, 1940"Awarded with Iron Cross 2nd Class.Minsk41, June 22, 1941\'Received new equipment: SE Panzer IIIH.Min'
+Heroes   : 2
+  [1] name=Dieter Lange  image=ground32.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 14]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+  [2] name=Matthias Fuchs  image=ground24.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=0 initiative=1 movement=0 spotting=0 range=0
+Citations:
+  - (1) Maubeuge
+  - (2) Arras
+  - (3) Maginot Line
+  - (4) Sevastopol Assault
+=== 37th SE Tiger I ===  @ 0x4131f
+History  : 1561 bytes | preview: 'Minsk41, June 22, 1941Unit commissioned.Leningrad41, August 28, 1941"Awarded with Iron Cross 2nd Class.Vyazma, October 2, 1941\'Received new equipment: SE Panzer'
+Heroes   : 2
+  [1] name=Daniel Lang  image=ground17.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Klaus Lehmann  image=ground15.png
+       stats16: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=3 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Minsk41
+  - (2) Ostrov
+  - (3) Demyansk Pocket
+  - (4) Escape from Stalingrad
+=== 61st SE Tiger I ===  @ 0x41aeb
+History  : 657 bytes | preview: 'Orel, March 27, 1943Unit commissioned.Orel, March 27, 1943#Received new equipment: SE Tiger I.Oboyan, July 9, 1943"Awarded with Iron Cross 2nd Class.Oboyan, Jul'
+Heroes   : 1
+  [1] name=Karsten Schwarz  image=ground6.png
+       stats16: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=1 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Orel
+=== 41st SE Tiger I ===  @ 0x41e67
+History  : 861 bytes | preview: 'Simferopol, June 2, 1942Unit commissioned. Buzinovka Depot, August 26, 1942"Awarded with Iron Cross 2nd Class.&Storming Stalingrad, September 9, 1942*Klaus Walt'
+Heroes   : 1
+  [1] name=Klaus Walter  image=ground30.png
+       stats16: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=0 defense=3 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Voronezh
+  - (2) Buzinovka Depot
+  - (3) Tatsinskaya
+=== 1st SdKfz 233 8Rad ===  @ 0x422f3
+History  : 1001 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Modlin, September 26, 1939,Hoisted victory banner over Modlin Fortress.Spoils of War, October 1, 1939"Awarded with Ir'
+Heroes   : 1
+  [1] name=Klaus Schulz  image=ground13.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=2 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Lodz
+  - (3) Maubeuge
+  - (4) Kursk Armory South
+=== 29th SdKfz 233 8Rad ===  @ 0x4281b
+History  : 715 bytes | preview: 'Dijon, June 14, 1940Unit commissioned.Leningrad41, August 20, 1941"Awarded with Iron Cross 2nd Class.Tatsinskaya, December 16, 1942\'Received new equipment: SdKf'
+Heroes   : 1
+  [1] name=Markus Braun  image=ground1.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Maginot Line
+  - (2) Metaxas Line
+  - (3) Novgorod
+  - (4) Kursk Armory South
+=== 24th StuG IIIG ===  @ 0x42c41
+History  : 1209 bytes | preview: 'Dunkirk, May 24, 1940Unit commissioned.Minsk41, June 27, 1941*Hoisted victory banner over Brest-Litovsk.Minsk41, June 28, 1941"Awarded with Iron Cross 2nd Class'
+Heroes   : 1
+  [1] name=Paul Herrmann  image=ground9.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Dunkirk
+  - (2) Reims
+  - (3) Minsk41
+  - (4) Belgorod
+=== 5th StuG IIIG ===  @ 0x4321f
+History  : 1193 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Narvik, April 19, 1940(Received new equipment: Panzerjger  IB.Arras, May 19, 1940"Awarded with Iron Cross 2nd Class.K'
+Heroes   : 1
+  [1] name=Dirk Becker  image=ground1.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+       derived: attack=2 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Kampinsoka Forest
+  - (2) Albert Canal
+  - (3) Ostrov
+  - (4) Yakovlevo
+=== 36th StuG IIIG ===  @ 0x43809
+History  : 737 bytes | preview: 'Voronezh, July 5, 1942Unit commissioned. Buzinovka Depot, August 30, 1942"Awarded with Iron Cross 2nd Class.)Escape from Stalingrad, November 16, 1942+Steffen B'
+Heroes   : 1
+  [1] name=Steffen Braun  image=ground19.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+Citations:
+  - (1) Voronezh
+  - (2) Buzinovka Depot
+  - (3) Yakovlevo
+=== 15th 15 cm sFH 18 ===  @ 0x43c15
+History  : 853 bytes | preview: 'Poznan, September 1, 1939Unit commissioned.Spoils of War, October 8, 1939"Awarded with Iron Cross 2nd Class.Reims, June 9, 1940/Christian Richter distinguished '
+Heroes   : 1
+  [1] name=Christian Richter  image=ground5.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Danzig Corridor
+  - (3) Eben-Emael
+  - (4) Simferopol
+=== 14th 17 cm K 18 ===  @ 0x440b9
+History  : 1275 bytes | preview: 'Poznan, September 1, 1939Unit commissioned. Warsaw South, September 29, 1939"Awarded with Iron Cross 2nd Class.Lillehammer, April 14, 1940-Stefan Hartmann disti'
+Heroes   : 2
+  [1] name=Stefan Hartmann  image=ground21.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 11]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+  [2] name=Daniel Jung  image=ground2.png
+       stats16: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=3 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Danzig Corridor
+  - (3) Albert Canal
+  - (4) Kharkov42
+  - (5) Oboyan
+=== 8th 17 cm K 18 ===  @ 0x4476b
+History  : 1215 bytes | preview: 'Kampinsoka Forest, September 18, 1939Unit commissioned.Albert Canal, May 12, 1940"Awarded with Iron Cross 2nd Class.Sedan, May 16, 1940(Dirk Klein distinguished'
+Heroes   : 2
+  [1] name=Dirk Klein  image=ground10.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 13]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+  [2] name=Karsten Weber  image=ground14.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+Citations:
+  - (1) Kampinsoka Forest
+  - (2) Modlin
+  - (3) Albert Canal
+  - (4) Simferopol
+  - (5) Kursk Armory South
+=== 2nd 17 cm K 18 ===  @ 0x44df9
+History  : 1295 bytes | preview: 'Lodz, September 9, 1939Unit commissioned.Spoils of War, October 3, 1939"Awarded with Iron Cross 2nd Class.Reims, June 9, 1940,Michael Schmid distinguished as he'
+Heroes   : 2
+  [1] name=Michael Schmid  image=ground39.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 16]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+  [2] name=Jurgen Schneider  image=ground8.png
+       stats16: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=3 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Lodz
+  - (2) Lodz
+  - (3) Albert Canal
+  - (4) Kharkov42
+  - (5) Oboyan
+=== 31st 17 cm K 18 ===  @ 0x454ab
+History  : 883 bytes | preview: 'Dunkirk, May 24, 1940Unit commissioned.Smolensk41, July 13, 1941"Awarded with Iron Cross 2nd Class.#Streets of Moscow, December 9, 1941+Markus Schulz distinguis'
+Heroes   : 1
+  [1] name=Markus Schulz  image=ground11.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+Citations:
+  - (1) Dunkirk
+  - (2) Reims
+  - (3) Dijon
+  - (4) Kharkov42
+  - (5) Oboyan
+=== 19th Sturmpanzer I ===  @ 0x45957
+History  : 579 bytes | preview: 'Danzig Corridor, September 5, 1939Unit commissioned. Warsaw South, September 30, 1939"Awarded with Iron Cross 2nd Class.Sedan, May 16, 1940*Dirk Neumann disting'
+Heroes   : 1
+  [1] name=Dirk Neumann  image=ground31.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=1 range=0
+Citations:
+  - (1) Danzig Corridor
+  - (2) Piatek
+  - (3) Albert Canal
+  - (4) Simferopol
+=== 44th Wurfrahmen 40 ===  @ 0x45ce7
+History  : 815 bytes | preview: 'CreteAirborne, May 20, 1941Unit commissioned.Ostrov, July 25, 1941"Awarded with Iron Cross 2nd Class.#Streets of Moscow, December 5, 1941+Torsten Bauer distingu'
+Heroes   : 1
+  [1] name=Torsten Bauer  image=ground25.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) CreteAirborne
+  - (2) Smolensk41
+  - (3) Leningrad41
+  - (4) Vitebsk
+  - (5) Oboyan
+=== 43rd Wurfrahmen 40 ===  @ 0x4616f
+History  : 831 bytes | preview: 'CreteAirborne, May 20, 1941Unit commissioned.Novgorod, August 2, 1941)Dirk Werner distinguished as hero of war.!Sevastopol Assault, June 27, 1942"Awarded with I'
+Heroes   : 2
+  [1] name=Dirk Werner  image=ground13.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 13]
+       derived: attack=0 defense=0 initiative=0 movement=0 spotting=0 range=1
+  [2] name=Robert Keller  image=ground20.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=1 spotting=0 range=0
+Citations:
+  - (1) Minsk41
+  - (2) Smolensk41
+  - (3) Leningrad41
+  - (4) Kharkov42
+  - (5) Oboyan
+=== 47th Wurfrahmen 40 ===  @ 0x4665f
+History  : 761 bytes | preview: 'Sevastopol Assault, June 24, 1942Unit commissioned.&Storming Stalingrad, September 8, 1942"Awarded with Iron Cross 2nd Class.)Escape from Stalingrad, November 1'
+Heroes   : 1
+  [1] name=Robert Schmid  image=ground35.png
+       stats16: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+       derived: attack=0 defense=0 initiative=0 movement=1 spotting=0 range=0
+Citations:
+  - (1) Sevastopol Assault
+  - (2) Novoanninsky
+  - (3) Storming Stalingrad
+  - (4) Kharkov43
+=== Captured 105mm wz. 29 ===  @ 0x46ac5
+History  : 847 bytes | preview: 'Warsaw South, September 28, 1939Unit commissioned.Smolensk41, July 18, 1941+Jurgen Scholz distinguished as hero of war.Kharkov42, May 15, 1942"Awarded with Iron'
+Heroes   : 1
+  [1] name=Jurgen Scholz  image=ground6.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=2 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Warsaw South
+  - (2) Spoils of War
+  - (3) Albert Canal
+  - (4) Vitebsk
+  - (5) Oboyan
+=== 16th Hummel ===  @ 0x46fa5
+History  : 1423 bytes | preview: 'Poznan, September 1, 1939Unit commissioned."Danzig Corridor, September 5, 1939(Received new equipment: 10.5 cm leFH 18. Warsaw South, September 29, 1939"Awarded'
+Heroes   : 2
+  [1] name=Daniel Walter  image=ground4.png
+       stats16: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12]
+       derived: attack=2 defense=0 initiative=0 movement=0 spotting=0 range=0
+  [2] name=Daniel Meier  image=ground37.png
+       stats16: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       derived: attack=1 defense=0 initiative=0 movement=0 spotting=0 range=0
+Citations:
+  - (1) Poznan
+  - (2) Danzig Corridor
+  - (3) Sedan
+  - (4) Simferopol
+  - (5) Kursk Armory South

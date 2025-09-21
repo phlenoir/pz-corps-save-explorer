@@ -37,6 +37,7 @@ class Hero:
 @dataclass
 class Unit:
     name: str
+    stats: List[int]
     history: bytes
     heroes: List[Hero]
     citations: List[str]
@@ -91,6 +92,23 @@ def skip_leading_non_ascii(buf: bytes, start: int, max_skip: int = 256) -> int:
     while i < end and not is_printable_ascii(buf[i]):
         i += 1
     return i
+
+def bytes_to_u16_list(data: bytes, length: Optional[int] = None) -> List[int]:
+    """
+    Convertit un tableau de bytes en liste d'entiers non signés sur 2 octets (little-endian).
+    - data : tableau de bytes source
+    - length : nombre d'octets à analyser (par défaut = toute la longueur)
+    
+    Si la longueur (réelle ou fournie) est impaire, l'octet final est ignoré.
+    """
+    if length is None or length > len(data):
+        length = len(data)
+    n = length // 2 * 2  # arrondir à l'entier pair inférieur
+    out = []
+    for i in range(0, n, 2):
+        val = int.from_bytes(data[i:i+2], "little")
+        out.append(val)
+    return out
 
 # ------------------ recherches sentinelles ------------------
 
@@ -309,23 +327,32 @@ def decode_history(hist_bytes: bytes, offset: int = 185, snippet: int = 160) -> 
     """
     h = hist_bytes[offset:]
     s = utf16_ascii_from_bytes(h)
-    return s[:snippet]
+    return s[:snippet]    
 
 # ------------------ parse unité complète ------------------
 
-def parse_one_unit(data: bytes, off: int,
+def parse_one_unit(data: bytes, off: int, hist_head_off: int,
                    after_name_window: int = MAX_AFTER_NAME_TO_SENT,
                    history_window: int = MAX_HISTORY_TO_SENT,
                    tail_window: int = MAX_TAIL_TO_SENT,
                    min_run: int = MIN_FF_RUN,
                    max_run: Optional[int] = MAX_FF_RUN) -> Tuple[Unit, int]:
-    name, p = read_utf16le_cstr(data, off)
+    
+    # Make sure we start on a readable caracter
+    first_readable = skip_leading_non_ascii(data, off)
+    name, p = read_utf16le_cstr(data, first_readable)
 
     # 1) 1ère sentinelle après le nom
     pos1, cnt1 = find_next_ff_run(data, p, after_name_window, min_count=min_run, max_run=max_run)
     if pos1 < 0:
         raise ValueError("first FF-run (>=min_run) not found within bounds after name")
     hist_start = pos1 + (cnt1 if max_run is None else min(cnt1, max_run))
+
+    hist_head = data[hist_start+1:]    
+    #print(f"\n[History header with stats] start @ 0x{hist_start:x} len {hist_head_off}")
+    #print(hexdump_slice(hist_head, 0))
+    #print(hexdump_slice(data, hist_start, hist_head_off))
+    stats = bytes_to_u16_list(hist_head, hist_head_off)
 
     # 2) 2ème sentinelle (fin histoire) 
     pos2, cnt2 = find_next_ff_run(data, hist_start, history_window, min_count=min_run, max_run=max_run)
@@ -353,18 +380,19 @@ def parse_one_unit(data: bytes, off: int,
 
     unit = Unit(
         name=name,
+        stats=stats,
         history=history,
         heroes=heroes,
         citations=citations,
         raw_tail_bytes=tail,
         start_off=off,
-        end_off=pos3 + cnt3 + 4,
+        end_off=pos3 + cnt3 + 4, # there is a minimum of 4 bytes to the next unit
     )
     return unit, unit.end_off
 
 # ------------------ scan ------------------
 
-def scan_units(data: bytes, start_off: int, max_units: int = 100,
+def scan_units(data: bytes, start_off: int, hist_head_off: int, max_units: int = 100,
                after_name_window: int = MAX_AFTER_NAME_TO_SENT,
                history_window: int = MAX_HISTORY_TO_SENT,
                tail_window: int = MAX_TAIL_TO_SENT,
@@ -377,7 +405,7 @@ def scan_units(data: bytes, start_off: int, max_units: int = 100,
             break
         try:
             u, off_next = parse_one_unit(
-                data, off,
+                data, off, hist_head_off=hist_head_off,
                 after_name_window=after_name_window,
                 history_window=history_window,
                 tail_window=tail_window,
@@ -394,7 +422,7 @@ def scan_units(data: bytes, start_off: int, max_units: int = 100,
 
 # ------------------ probe (debug) ------------------
 
-def probe_offset(data: bytes, off: int,
+def probe_offset(data: bytes, off: int, hist_head_off: int,
                  after_name_window: int = MAX_AFTER_NAME_TO_SENT,
                  history_window: int = MAX_HISTORY_TO_SENT,
                  tail_window: int = MAX_TAIL_TO_SENT,
@@ -467,7 +495,7 @@ def main():
         print("\n[hexdump]")
         print(hexdump_slice(data, off, length=args.dump))
         print("\n[probe]")
-        d = probe_offset(data, off,
+        d = probe_offset(data, off, hist_head_off=args.hist_offset,
                          after_name_window=args.after_name,
                          history_window=args.history,
                          tail_window=args.tail,
@@ -504,7 +532,7 @@ def main():
 
     # Scan normal
     units = scan_units(
-        data, off,
+        data, off, hist_head_off=args.hist_offset,
         after_name_window=args.after_name,
         history_window=args.history,
         tail_window=args.tail,
@@ -520,7 +548,8 @@ def main():
             return
         for u in hits:
             print(f"=== {u.name} === @ 0x{u.start_off:x}")
-            print(f"History: {len(u.history)} bytes  | preview: {decode_history(u.history, args.hist_encoding, args.hist_snippet)!r}")
+            print(f"Stats:stats={h.stats}")
+            print(f"History: {len(u.history)} bytes  | preview: {decode_history(u.history, args.hist_offset, args.hist_snippet)!r}")
             print(f"Heroes : {len(u.heroes)}  | Citations: {len(u.citations)}")
             for i, h in enumerate(u.heroes, 1):
                 print(f"  [{i}] name={h.name} type={h.type} image={h.image} stats16={h.stats16}")
@@ -530,7 +559,7 @@ def main():
                     print(f"  - ({i}) {s}")
     elif args.list:
         for u in units[:args.list]:
-            print(f"- {u.name}  @0x{u.start_off:x}  hist={len(u.history)}B  heroes={len(u.heroes)}  quotes={len(u.citations)}  preview={decode_history(u.history, args.hist_encoding, 60)!r}")
+            print(f"- {u.name}  @0x{u.start_off:x}  hist={len(u.history)}B  heroes={len(u.heroes)}  quotes={len(u.citations)}  preview={decode_history(u.history, args.hist_offset, 60)!r}")
 
 if __name__ == "__main__":
     main()
