@@ -33,9 +33,9 @@ pip install -r requirements.txt
 Use `robust_unit_scanner.py` to parse a save file and list units:
 
 ```bash
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --debug --dump 200
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --list 5
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --debug --dump 200
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --list 5
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
 ```
 
 ### 2. Display Specific Units
@@ -43,23 +43,18 @@ Use `robust_unit_scanner.py` to parse a save file and list units:
 Use `show_unit.py` to display information about one or more units:
 
 ```bash
-# Display a single unit by ID
-python show_unit.py saves/example_save.dat --unit-id 42
-
-# Display multiple units by IDs
-python show_unit.py saves/example_save.dat --unit-id 42 17 8
 
 # Search by unit name
-python show_unit.py saves/exemple.sav "45th SdKfz  7/2" --units-offset 0x39ED9
+python show_unit.py saves/Kiev43.pzsav "45th SdKfz  7/2" --units-offset 0x39ED9
 
 # Directly by Offset (first unit at this offset)
-python show_unit.py saves/exemple.sav --units-offset 0x39ED9
+python show_unit.py --units-offset 0x39ed9 saves/Kiev43.pzsav
 
 # By offset + index (e.g., 2nd unit from the offset)
-python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --index 2
+python show_unit.py saves/Kiev43.pzsav --units-offset 0x39ED9 --index 2
 
 # By offset + multiple units (e.g., 3 units from the offset)
-python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --count 3
+python show_unit.py saves/Kiev43.pzsav --units-offset 0x39ED9 --count 3
 ```
 
 Refer to each script's `--help` option for more details:
@@ -68,8 +63,6 @@ Refer to each script's `--help` option for more details:
 python robust_unit_scanner.py --help
 python show_unit.py --help
 ```
-
-## How to find the offset of the first unit in a .pzsav file
 
 ## Finding the offset of the first unit in a `.pzsav` file
 
