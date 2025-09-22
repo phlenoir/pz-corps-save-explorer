@@ -1,6 +1,6 @@
 # Panzer Corps – Save Decoder Starter Kit
 
-Voici maintenant une **arborescence de projet complète** pour travailler proprement avec Python et un environnement virtuel.
+Here is the **project structure** - works with Python and a virtual environment.
 
 ---
 ## Project Structure
@@ -23,6 +23,7 @@ pz-corps-save-explorer/
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 .venv\\Scripts\\activate   # Windows
+. .venv/Scripts/activate   # git bash on Windows
 pip install -r requirements.txt
 ```
 
