@@ -69,8 +69,6 @@ python robust_unit_scanner.py --help
 python show_unit.py --help
 ```
 
-## How to find the offset of the first unit in a .pzsav file
-
 ## Finding the offset of the first unit in a `.pzsav` file
 
 To parse units from a Panzer Corps save file, you first need the **offset of the first unit**.  
