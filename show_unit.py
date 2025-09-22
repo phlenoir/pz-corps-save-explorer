@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 """
-show_unit.py — utilise le Robust Unit Scanner pour afficher UNE ou PLUSIEURS unités par nom ou par offset.
+show_unit.py — uses the Robust Unit Scanner to display ONE or MORE units by name or by offset.
 
-- Repose sur robust_unit_scanner.py (sentinelles 0xFF contiguës).
-- Affiche un aperçu lisible de l'histoire et les caractéristiques dérivées des héros.
-- Ajout debug: signale les octets non ASCII sautés avant chaque héros.
+- Relies on robust_unit_scanner.py (contiguous 0xFF sentinels).
+- Displays a readable preview of the history and derived hero characteristics.
+- debug: reports non-ASCII bytes skipped before each hero.
 
-Exemples:
-  # Recherche par nom
-  python show_unit.py saves/exemple.sav "45th SdKfz  7/2" --units-offset 0x39ED9
+Examples:
+    # Search by name
+    python show_unit.py saves/exemple.sav "45th SdKfz  7/2" --units-offset 0x39ED9
 
-  # Directement par offset (première unité à cet offset)
-  python show_unit.py saves/exemple.sav --units-offset 0x39ED9
+    # Directly by offset (first unit at this offset)
+    python show_unit.py saves/exemple.sav --units-offset 0x39ED9
 
-  # Par offset + index (ex: 2ème unité à partir de l'offset)
-  python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --index 2
+    # By offset + index (e.g., 2nd unit from the offset)
+    python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --index 2
 
-  # Par offset + plusieurs unités (ex: 3 unités à partir de l'offset)
-  python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --count 3
+    # By offset + multiple units (e.g., 3 units from the offset)
+    python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --count 3
 """
 from __future__ import annotations
 import argparse

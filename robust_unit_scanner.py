@@ -2,15 +2,15 @@
 """
 Robust unit scanner.
 
-Nouveautés:
-- Détecte les sentinelles comme des **runs de 0xFF** (longueur >= min_run, par défaut 4).
-- S'arrête **strictement à la première sentinelle** trouvée après chaque bloc.
-- Mode `--debug` : hexdump, aperçu des runs, distances, extrait lisible de l'histoire.
+Features:
+- Detects sentinels as **runs of 0xFF** (length >= min_run, default 4).
+- Stops **strictly at the first sentinel** found after each block.
+- `--debug` mode: hexdump, run overview, distances, readable history snippet.
 
 Usage:
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --debug --dump 200
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --list 5
-  python robust_unit_scanner.py --save saves/exemple.sav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
+    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --debug --dump 200
+    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --list 5
+    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
 """
 from __future__ import annotations
 import argparse
