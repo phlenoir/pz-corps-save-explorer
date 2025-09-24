@@ -44,6 +44,7 @@ class Unit:
     raw_tail_bytes: bytes
     start_off: int
     end_off: int
+    idx: Optional[int] = None   # index dans la liste scannée (1-based)
 
 # ------------------ helpers encodage ------------------
 
@@ -392,7 +393,7 @@ def parse_one_unit(data: bytes, off: int, hist_head_off: int,
 
 # ------------------ scan ------------------
 
-def scan_units(data: bytes, start_off: int, hist_head_off: int, max_units: int = 100,
+def scan_units(data: bytes, start_off: int, hist_head_off: int = 185, max_units: int = 100,
                after_name_window: int = MAX_AFTER_NAME_TO_SENT,
                history_window: int = MAX_HISTORY_TO_SENT,
                tail_window: int = MAX_TAIL_TO_SENT,
@@ -400,6 +401,7 @@ def scan_units(data: bytes, start_off: int, hist_head_off: int, max_units: int =
                max_run: Optional[int] = MAX_FF_RUN) -> List[Unit]:
     units: List[Unit] = []
     off = start_off
+    idx = 1
     for _ in range(max_units):
         if off >= len(data):
             break
@@ -412,8 +414,10 @@ def scan_units(data: bytes, start_off: int, hist_head_off: int, max_units: int =
                 min_run=min_run,
                 max_run=max_run,
             )
+            u.idx = idx
             units.append(u)
             off = off_next
+            idx += 1
         except ValueError:
             print("\n[ValueError]")
             print(hexdump_slice(data, off))

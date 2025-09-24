@@ -34,9 +34,9 @@ pip install -r requirements.txt
 Use `robust_unit_scanner.py` to parse a save file and list units:
 
 ```bash
-  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --debug --dump 200
-  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --list 5
-  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 --debug --dump 200
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 --list 5
+  python robust_unit_scanner.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 --name "45th SdKfz  7/2"
 ```
 
 ### 2. Display Specific Units
@@ -46,16 +46,16 @@ Use `show_unit.py` to display information about one or more units:
 ```bash
 
 # Search by unit name
-python show_unit.py saves/Kiev43.pzsav "45th SdKfz  7/2" --units-offset 0x39ED9
+python show_unit.py saves/Kiev43.pzsav "45th SdKfz  7/2" --units-offset 0x039EA9
 
 # Directly by Offset (first unit at this offset)
-python show_unit.py --units-offset 0x39ed9 saves/Kiev43.pzsav
+python show_unit.py --units-offset 0x039EA9 saves/Kiev43.pzsav
 
 # By offset + index (e.g., 2nd unit from the offset)
-python show_unit.py saves/Kiev43.pzsav --units-offset 0x39ED9 --index 2
+python show_unit.py saves/Kiev43.pzsav --units-offset 0x039EA9 --index 2
 
 # By offset + multiple units (e.g., 3 units from the offset)
-python show_unit.py saves/Kiev43.pzsav --units-offset 0x39ED9 --count 3
+python show_unit.py saves/Kiev43.pzsav --units-offset 0x039EA9 --count 3
 ```
 
 Refer to each script's `--help` option for more details:
@@ -63,6 +63,22 @@ Refer to each script's `--help` option for more details:
 ```bash
 python robust_unit_scanner.py --help
 python show_unit.py --help
+```
+
+### 2. Modify Unit or Hero stats
+
+```bash
+# Dry-run: change hero stats (first hero) by unit name
+python stats_editor.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 \
+  --unit-name "45th SdKfz  7/2" --hero-index 1 --set attack=22 movement=8
+
+# Write back (creates .bak)
+python stats_editor.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 \
+  --unit-name "45th SdKfz  7/2" --hero-index 1 --set attack=22 movement=8 --write
+
+# By unit index instead of name
+python stats_editor.py --save saves/Kiev43.pzsav --units-offset 0x039EA9 \
+  --unit-index 2 --hero-index 1 --set defense=12 --write
 ```
 
 ## Finding the offset of the first unit in a `.pzsav` file

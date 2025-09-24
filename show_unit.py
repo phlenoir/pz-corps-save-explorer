@@ -93,7 +93,7 @@ def main():
             return
 
     for u in matches:
-        print(f"=== {u.name} ===  @ 0x{u.start_off:x}")
+        print(f"\n>>unit {u.idx:<3d} === {u.name} ===   @ 0x{u.start_off:x}")
         print(f"Stats: {u.stats}")
         # Dérivés par positions 1-based -> indices 0-based
         def get(idx: int):
