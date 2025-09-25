@@ -12,15 +12,15 @@ Design goals
 Examples
 ---------
 # Update hero stats by name (first hero), dry-run only
-python stats_editor.py --save saves/example.pzsav --units-offset 0x39ED9 \
+python stats_editor.py --save saves/example.pzsav --units-offset 0x39EA9 \
   --unit-name "45th SdKfz  7/2" --hero-index 1 --set attack=22 movement=8
 
 # Same but actually write back (with .bak backup)
-python stats_editor.py --save saves/example.pzsav --units-offset 0x39ED9 \
+python stats_editor.py --save saves/example.pzsav --units-offset 0x39EA9 \
   --unit-name "45th SdKfz  7/2" --hero-index 1 --set attack=22 movement=8 --write
 
 # Update by unit index instead of name (2nd unit from offset), set defense
-python stats_editor.py --save saves/example.pzsav --units-offset 0x39ED9 \
+python stats_editor.py --save saves/example.pzsav --units-offset 0x39EA9 \
   --unit-index 2 --hero-index 1 --set defense=12 --write
 
 """
@@ -31,7 +31,7 @@ from typing import Dict, List, Optional, Tuple
 import argparse
 import shutil
 
-from robust_unit_scanner import scan_units
+from unit_scanner import scan_units
 
 # ====== Low-level LE writers ======
 
@@ -63,14 +63,18 @@ HERO_STAT_INDEX: Dict[str, int] = {
     "range": 12,
 }
 
-# Placeholder mapping for unit stats (u32). Adjust as your format becomes clear.
 UNIT_STAT_INDEX: Dict[str, int] = {
-    # "attack": 3,
-    # "defense": 5,
-    # "initiative": 6,
-    # "movement": 8,
-    # "spotting": 10,
-    # "range": 12,
+    "xp"         : 9,
+    "fuel"       : 17,
+    "ammo"       : 19,
+    "kills"      : 24,
+    "losses"     : 26,
+    "erase_inf"  : 28,
+    "erase_tank" : 30,
+    "erase_reco" : 32,
+    "erase_at"   : 34,
+    "erase_art"  : 36,
+    "erase_aa"   : 38,
 }
 
 # ====== Helpers ======
@@ -103,35 +107,13 @@ def parse_kv_updates(pairs: List[str]) -> Dict[str, int]:
         raise ValueError("no updates provided")
     return out
 
-# Try to derive hero stats16 offset if the scanner didn't record it
-# Strategy: look for the hero's image C-string within the unit slice, then take the
-# following 32 bytes as the 16*u16 stats block.
-
-def find_hero_stats16_off(data: bytes, unit_start: int, unit_end: int, image_name: str) -> Optional[int]:
-    # C-string bytes: name + null terminator
-    key = image_name.encode("ascii", errors="ignore") + b"\x00"
-    start = max(0, unit_start)
-    end = min(len(data), unit_end) if unit_end else len(data)
-    pos = data.find(key, start, end)
-    if pos < 0:
-        return None
-    stats_off = pos + len(key)  # immediately after the NUL of the image name
-    if stats_off + 32 <= len(data):
-        return stats_off
-    return None
-
-# ====== High level API ======
 
 def set_hero_stats(buf: bytearray, data: bytes, unit, hero, updates: Dict[str, int]) -> List[Tuple[str, int, int]]:
     """Apply updates to a hero's 16×u16 stats. Returns a list of (key, old, new)."""
     # Prefer an explicit offset captured by the scanner
     stats_off: Optional[int] = getattr(hero, "stats16_off", None)
     if stats_off is None:
-        # Fallback: locate via image name within unit range
-        stats_off = find_hero_stats16_off(data, getattr(unit, "start_off", 0), getattr(unit, "end_off", 0), hero.image)
-        if stats_off is None:
-            raise RuntimeError("Could not locate hero stats block (need scanner to record stats16_off)")
-
+        raise RuntimeError("Could not locate hero stats block (need scanner to record stats16_off)")
     changed: List[Tuple[str, int, int]] = []
     for k, newv in updates.items():
         idx = HERO_STAT_INDEX.get(k)

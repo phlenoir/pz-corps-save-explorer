@@ -8,20 +8,20 @@ show_unit.py — uses the Robust Unit Scanner to display ONE or MORE units by na
 
 Examples:
     # Search by name
-    python show_unit.py saves/exemple.sav "45th SdKfz  7/2" --units-offset 0x39ED9
+    python show_unit.py saves/exemple.sav "45th SdKfz  7/2" --units-offset 0x39EA9
 
     # Directly by offset (first unit at this offset)
-    python show_unit.py saves/exemple.sav --units-offset 0x39ED9
+    python show_unit.py saves/exemple.sav --units-offset 0x39EA9
 
     # By offset + index (e.g., 2nd unit from the offset)
-    python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --index 2
+    python show_unit.py saves/exemple.sav --units-offset 0x39EA9 --index 2
 
     # By offset + multiple units (e.g., 3 units from the offset)
-    python show_unit.py saves/exemple.sav --units-offset 0x39ED9 --count 3
+    python show_unit.py saves/exemple.sav --units-offset 0x39EA9 --count 3
 """
 from __future__ import annotations
 import argparse
-from robust_unit_scanner import scan_units, decode_history
+from unit_scanner import scan_units, decode_history
 
 def main():
     p = argparse.ArgumentParser(description="Show unit(s) (robust scanner)")

@@ -8,9 +8,9 @@ Features:
 - `--debug` mode: hexdump, run overview, distances, readable history snippet.
 
 Usage:
-    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --debug --dump 200
-    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --list 5
-    python robust_unit_scanner.py --save saves/example.sav --units-offset 0x39ED9 --name "45th SdKfz  7/2"
+    python unit_scanner.py --save saves/example.sav --units-offset 0x39EA9 --debug --dump 200
+    python unit_scanner.py --save saves/example.sav --units-offset 0x39EA9 --list 5
+    python unit_scanner.py --save saves/example.sav --units-offset 0x39EA9 --name "45th SdKfz  7/2"
 """
 from __future__ import annotations
 import argparse
@@ -33,6 +33,7 @@ class Hero:
     name: str
     image: str
     stats16: List[int]
+    stats16_off: Optional[int] = None  # offset dans le fichier (si connu)
 
 @dataclass
 class Unit:
@@ -161,7 +162,7 @@ def hexdump_slice(data: bytes, start: int, length: int = 200, width: int = 16) -
         out_lines.append(f"0x{off:08x}  {hexpart:<{width*3}}  |{asciip}|")
     return "\n".join(out_lines)
 
-# ------------------ parsing héros & citations ------------------
+# ------------------ parsing heroes & citations ------------------
 
 def looks_non_ascii_block(b: bytes) -> bool:
     """Heuristique: 'non-ascii' si >75% des octets ne sont pas imprimables ASCII."""
@@ -217,12 +218,14 @@ def parse_one_hero(
         
     # 16 * u16
     need = 16 * 2
-    if pos + runlen + need > n:
+    stats16_off = pos + runlen
+    stats16_end = stats16_off + need
+    if stats16_off + need > n:
         return None, off
-    stats16 = [int.from_bytes(data[l:l+2], "little") for l in range(pos + runlen, pos + runlen + need, 2)]
+    stats16 = [int.from_bytes(data[l:l+2], "little") for l in range(stats16_off, stats16_end, 2)]
     #print(f"  stats16 {stats16}")
 
-    return Hero(name=name, image=image, stats16=stats16), pos + runlen + need + 2
+    return Hero(name=name, image=image, stats16=stats16, stats16_off=stats16_off), stats16_end + 2
 
 
 def parse_heroes_with_sentinels(
