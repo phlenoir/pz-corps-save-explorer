@@ -15,7 +15,7 @@ Usage:
 from __future__ import annotations
 import argparse
 from dataclasses import dataclass
-from typing import List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional
 
 # ------------------ constantes ------------------
 MIN_FF_RUN = 4
@@ -39,6 +39,7 @@ class Hero:
 class Unit:
     name: str
     stats: List[int]
+    stats_off: int
     history: bytes
     heroes: List[Hero]
     citations: List[str]
@@ -46,6 +47,46 @@ class Unit:
     start_off: int
     end_off: int
     idx: Optional[int] = None   # index dans la liste scannée (1-based)
+
+# ====== Named indices ======
+
+HERO_STAT_INDEX: Dict[str, int] = {
+    # 1-based positions given earlier -> 0-based indices
+    "attack": 3,
+    "defense": 5,
+    "initiative": 6,
+    "movement": 8,
+    "spotting": 10,
+    "range": 12,
+}
+
+UNIT_STAT_INDEX: Dict[str, int] = {
+    "strength"   : 5,
+    "max_strength": 7,
+    "xp"         : 13,
+    "fuel"       : 21,
+    "ammo"       : 23,
+    "kills"      : 28,
+    "losses"     : 30,
+    "kill_inf"  : 32,
+    "kill_tank" : 34,
+    "kill_reco" : 36,
+    "kill_at"   : 38,
+    "kill_art"  : 40,
+    "kill_aa"   : 42,
+    "kill_bunker": 44,
+    "kill_fighter": 46,
+    "kill_tbomber": 48,
+    "kill_sbomber": 50,
+    "kill_submarine": 52,
+    "kill_destroyer": 54,
+    "kill_cruiser": 56,
+    "kill_carrier": 58,
+    "kill_truck": 60,
+    "kill_airtransport": 62,
+    "kill_seatransport": 64,
+    "kill_train": 66,
+}
 
 # ------------------ helpers encodage ------------------
 
@@ -351,11 +392,8 @@ def parse_one_unit(data: bytes, off: int, hist_head_off: int,
     if pos1 < 0:
         raise ValueError("first FF-run (>=min_run) not found within bounds after name")
     hist_start = pos1 + (cnt1 if max_run is None else min(cnt1, max_run))
-
-    hist_head = data[hist_start+1:]    
-    #print(f"\n[History header with stats] start @ 0x{hist_start:x} len {hist_head_off}")
-    #print(hexdump_slice(hist_head, 0))
-    #print(hexdump_slice(data, hist_start, hist_head_off))
+    stats_off = hist_start + 1  # should be the first byte of stats (u16[66])
+    hist_head = data[stats_off:]
     stats = bytes_to_u16_list(hist_head, hist_head_off)
 
     # 2) 2ème sentinelle (fin histoire) 
@@ -385,6 +423,7 @@ def parse_one_unit(data: bytes, off: int, hist_head_off: int,
     unit = Unit(
         name=name,
         stats=stats,
+        stats_off=stats_off if stats else None,
         history=history,
         heroes=heroes,
         citations=citations,
@@ -425,6 +464,7 @@ def scan_units(data: bytes, start_off: int, hist_head_off: int = 185, max_units:
             print("\n[ValueError]")
             print(hexdump_slice(data, off))
             break
+    print(f"[scan_units] parsed {len(units)} units")
     return units
 
 # ------------------ probe (debug) ------------------
@@ -481,8 +521,7 @@ def main():
     ap.add_argument("--debug", action="store_true", help="Hexdump + FF-run probe (variable length, gaps) and exit")
     ap.add_argument("--dump", type=int, default=200, help="Bytes to dump after offset in --debug mode (default 200)")
     ap.add_argument("--hist-snippet", type=int, default=160, help="Chars of history preview (default 160)")
-    ap.add_argument("--hist-offset", type=int, default=185,
-               help="Byte offset into history for preview (after sentinel). Use 0 to start at beginning")
+    ap.add_argument("--hist-offset", type=int, default=132, help="Byte offset into history to collect stats")
     # Fenêtres & runs (override)
     ap.add_argument("--after-name", type=int, default=MAX_AFTER_NAME_TO_SENT, help="Window after name to look for 1st boundary")
     ap.add_argument("--history", type=int, default=MAX_HISTORY_TO_SENT, help="Window for history before 2nd boundary")

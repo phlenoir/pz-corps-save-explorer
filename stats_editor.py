@@ -31,7 +31,7 @@ from typing import Dict, List, Optional, Tuple
 import argparse
 import shutil
 
-from unit_scanner import scan_units
+from unit_scanner import scan_units, hexdump_slice, HERO_STAT_INDEX, UNIT_STAT_INDEX
 
 # ====== Low-level LE writers ======
 
@@ -51,31 +51,6 @@ def set_u32_le(buf: bytearray, base_off: int, index: int, value: int) -> None:
         raise IndexError(f"write beyond buffer for u32 at 0x{off:x}")
     buf[off:off+4] = value.to_bytes(4, "little", signed=False)
 
-# ====== Named indices ======
-
-HERO_STAT_INDEX: Dict[str, int] = {
-    # 1-based positions given earlier -> 0-based indices
-    "attack": 3,
-    "defense": 5,
-    "initiative": 6,
-    "movement": 8,
-    "spotting": 10,
-    "range": 12,
-}
-
-UNIT_STAT_INDEX: Dict[str, int] = {
-    "xp"         : 9,
-    "fuel"       : 17,
-    "ammo"       : 19,
-    "kills"      : 24,
-    "losses"     : 26,
-    "erase_inf"  : 28,
-    "erase_tank" : 30,
-    "erase_reco" : 32,
-    "erase_at"   : 34,
-    "erase_art"  : 36,
-    "erase_aa"   : 38,
-}
 
 # ====== Helpers ======
 
@@ -133,18 +108,19 @@ def set_hero_stats(buf: bytearray, data: bytes, unit, hero, updates: Dict[str, i
 
 def set_unit_stats(buf: bytearray, unit, updates: Dict[str, int]) -> List[Tuple[str, int, int]]:
     """Apply updates to a unit's u32 stats block (mapping is placeholder)."""
-    stats_off: Optional[int] = getattr(unit, "unit_stats_off", None)
+    # Prefer an explicit offset captured by the scanner
+    stats_off: int = getattr(unit, "stats_off", None)
     if stats_off is None:
-        raise RuntimeError("Unit stats offset (unit_stats_off) not recorded by scanner")
+        raise RuntimeError("Unit stats offset (stats_off) not recorded by scanner")
     changed: List[Tuple[str, int, int]] = []
     for k, newv in updates.items():
         idx = UNIT_STAT_INDEX.get(k)
         if idx is None:
             raise KeyError(f"Unknown unit stat key: {k}")
-        old = int.from_bytes(buf[stats_off + idx*4: stats_off + idx*4 + 4], "little")
+        old = int.from_bytes(buf[stats_off + idx*2: stats_off + idx*2 + 2], "little")
         if old == newv:
             continue
-        set_u32_le(buf, stats_off, idx, newv)
+        set_u16_le(buf, stats_off, idx, newv)
         # sync cache if present
         if hasattr(unit, "stats") and idx < len(unit.stats):
             unit.stats[idx] = newv
@@ -189,7 +165,7 @@ def main() -> None:
         if idx < 0 or idx >= len(units):
             raise SystemExit("Unit index out of bounds")
         unit = units[idx]
-
+    print(f"[select] editing unit: '{unit.name}' at 0x{unit.start_off:x}")
     updates = parse_kv_updates(args._get_kwargs_dict().get('set') if hasattr(args, '_get_kwargs_dict') else args.__dict__['set'])
 
     changes: List[Tuple[str, int, int]] = []

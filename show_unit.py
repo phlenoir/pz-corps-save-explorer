@@ -21,7 +21,7 @@ Examples:
 """
 from __future__ import annotations
 import argparse
-from unit_scanner import scan_units, decode_history
+from unit_scanner import scan_units, decode_history, HERO_STAT_INDEX, UNIT_STAT_INDEX
 
 def main():
     p = argparse.ArgumentParser(description="Show unit(s) (robust scanner)")
@@ -95,26 +95,46 @@ def main():
     for u in matches:
         print(f"\n>>unit {u.idx:<3d} === {u.name} ===   @ 0x{u.start_off:x}")
         print(f"Stats: {u.stats}")
-        # Dérivés par positions 1-based -> indices 0-based
-        def get(idx: int):
-            return u.stats[idx] if idx is not None and idx < len(u.stats) else None
-        xp         = get(9)
-        fuel       = get(17)
-        ammo       = get(19)
-        kills      = get(24)
-        losses     = get(26)
-        erase_inf  = get(28)
-        erase_tank = get(30)
-        erase_reco = get(32)
-        erase_at   = get(34)
-        erase_art  = get(36)
-        erase_aa   = get(38)
+        # Derived: use named indices from stats_editor to pick stats safely
+        def get_unit(idx: int):
+            return u.stats[idx] if idx is not None and 0 <= idx < len(u.stats) else None
+
+        strength   = get_unit(UNIT_STAT_INDEX.get("strength"))
+        max_strength = get_unit(UNIT_STAT_INDEX.get("max_strength"))
+        xp         = get_unit(UNIT_STAT_INDEX.get("xp"))
+        fuel       = get_unit(UNIT_STAT_INDEX.get("fuel"))
+        ammo       = get_unit(UNIT_STAT_INDEX.get("ammo"))
+        kills      = get_unit(UNIT_STAT_INDEX.get("kills"))
+        losses     = get_unit(UNIT_STAT_INDEX.get("losses"))
+        kill_inf  = get_unit(UNIT_STAT_INDEX.get("kill_inf"))
+        kill_tank = get_unit(UNIT_STAT_INDEX.get("kill_tank"))
+        kill_reco = get_unit(UNIT_STAT_INDEX.get("kill_reco"))
+        kill_at   = get_unit(UNIT_STAT_INDEX.get("kill_at"))
+        kill_art  = get_unit(UNIT_STAT_INDEX.get("kill_art"))
+        kill_aa   = get_unit(UNIT_STAT_INDEX.get("kill_aa"))
+        kill_bunker = get_unit(UNIT_STAT_INDEX.get("kill_bunker"))
+        kill_fighter = get_unit(UNIT_STAT_INDEX.get("kill_fighter"))
+        kill_tbomber = get_unit(UNIT_STAT_INDEX.get("kill_tbomber"))
+        kill_sbomber = get_unit(UNIT_STAT_INDEX.get("kill_sbomber"))
+        kill_submarine = get_unit(UNIT_STAT_INDEX.get("kill_submarine"))
+        kill_destroyer = get_unit(UNIT_STAT_INDEX.get("kill_destroyer"))
+        kill_cruiser = get_unit(UNIT_STAT_INDEX.get("kill_cruiser"))
+        kill_carrier = get_unit(UNIT_STAT_INDEX.get("kill_carrier"))
+        kill_truck = get_unit(UNIT_STAT_INDEX.get("kill_truck"))
+        kill_airtransport = get_unit(UNIT_STAT_INDEX.get("kill_airtransport"))
+        kill_seatransport = get_unit(UNIT_STAT_INDEX.get("kill_seatransport"))
+        kill_train = get_unit(UNIT_STAT_INDEX.get("kill_train"))
+
         print(
             "       derived: "
-            f"xp={xp} fuel={fuel} ammo={ammo} "
-            f"kills={kills} losses={losses} erase_inf={erase_inf} "
-            f"erase_tank={erase_tank} erase_reco={erase_reco} erase_at={erase_at} "
-            f"erase_art={erase_art} erase_aa={erase_aa} "
+            f"strength={strength} max_strength={max_strength} xp={xp} fuel={fuel} ammo={ammo} "
+            f"kills={kills} losses={losses} kill_inf={kill_inf} "
+            f"kill_tank={kill_tank} kill_reco={kill_reco} kill_at={kill_at} "
+            f"kill_art={kill_art} kill_aa={kill_aa} kill_bunker={kill_bunker} "
+            f"kill_fighter={kill_fighter} kill_tbomber={kill_tbomber} kill_sbomber={kill_sbomber} "
+            f"kill_submarine={kill_submarine} kill_destroyer={kill_destroyer} kill_cruiser={kill_cruiser} "
+            f"kill_carrier={kill_carrier} kill_truck={kill_truck} kill_airtransport={kill_airtransport} "
+            f"kill_seatransport={kill_seatransport} kill_train={kill_train}"
         )
         preview = decode_history(u.history,offset=args.hist_offset, snippet=args.hist_snippet)
         print(f"History  : {len(u.history)} bytes | preview: {preview!r}")
@@ -122,15 +142,16 @@ def main():
         if u.heroes:
             print(f"Heroes   : {len(u.heroes)}")
             for i, h in enumerate(u.heroes, 1):
-                # Dérivés par positions 1-based: 4,6,8,10,12,14 -> indices 0-based: 3,5,7,9,11,13
-                def get(idx: int):
-                    return h.stats16[idx] if idx is not None and idx < len(h.stats16) else None
-                attack     = get(3)
-                defense    = get(5)
-                initiative = get(7)
-                movement   = get(9)
-                spotting   = get(11)
-                range_     = get(13)
+                # Use named hero indices from stats_editor (safety-checked)
+                def get_hero(idx: int):
+                    return h.stats16[idx] if idx is not None and 0 <= idx < len(h.stats16) else None
+
+                attack     = get_hero(HERO_STAT_INDEX.get("attack"))
+                defense    = get_hero(HERO_STAT_INDEX.get("defense"))
+                initiative = get_hero(HERO_STAT_INDEX.get("initiative"))
+                movement   = get_hero(HERO_STAT_INDEX.get("movement"))
+                spotting   = get_hero(HERO_STAT_INDEX.get("spotting"))
+                range_     = get_hero(HERO_STAT_INDEX.get("range"))
 
                 print(f"  [{i}] name={h.name}  image={h.image}")
                 print(f"       stats16: {h.stats16}")
